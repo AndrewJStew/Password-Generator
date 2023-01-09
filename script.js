@@ -1,3 +1,7 @@
+//variavle for character length
+var characterLength = 10;
+//An arry to keep all choices (charcaters, numbers) I will use when creating a password.
+var choices = []
 // Array of special characters to be included in password
 var specialCharacters = [
   '@',
@@ -90,7 +94,27 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  //parseInt to turn into number not string
+  characterLength = parseInt(prompt("how long do you want your password? (10 - 64 characters."));
 
+  //if(isNaN(characterLength) || characterLength < 10 || characterLength > 120)) //checking to ensure this is all false
+  //alert("character length has to be a number between 10 - 64 characters");
+  //return false;
+
+  if (confirm("Do you want lowercase characters to be in your password?")) {
+    choices = choices.concat(lowerCasedCharacters);
+  }
+  if (confirm("Do you want uppercase characters to be in your password?")) {
+    choices = choices.concat(upperCasedCharacters);
+  }
+  if (confirm("Do you want special characters to be in your password?")) {
+    choices = choices.concat(numericCharacters);
+  }
+  if (confirm("Do you want numbers to be in your password?")) {
+    choices = choices.concat(specialCharacters);
+  }
+
+  return true;
 }
 
 // Function for getting a random element from an array
