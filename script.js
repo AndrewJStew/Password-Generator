@@ -117,10 +117,6 @@ function getPasswordOptions() {
   return true;
 }
 
-// Function for getting a random element from an array
-function getRandom(arr) {
-
-}
 
 // Function to generate password with user input
 function generatePassword() {
@@ -138,6 +134,13 @@ function generatePassword() {
 
   //4. generate password
   //return "Password to go here";
+
+  var password = "";
+  for (var i = 0; i < characterLength; i++) {
+    var ranChar = Math.floor(Math.random() * choices.length);
+    password = password + choices[ranChar];
+  }
+  return password;
 }
 
 // Get references to the #generate element
@@ -146,11 +149,15 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  //store the value of this function into the passwordtext variable
-  var passwordText = document.querySelector('#password');
+  var truePrompts = getPasswordOptions();
+  var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  if (truePrompts) {
+    var newPass = generatePassword();
+    passwordText.value = newPass;
+  } else {
+    passwordText.value = "";
+  }
 }
 
 // Add event listener to generate button
